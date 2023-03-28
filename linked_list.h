@@ -59,6 +59,7 @@ LinkedList* reverse_rec(LinkedList * const head) {
             tmp = tmp->next;
         }
         tmp->next = head;
+        head->next = nullptr;
         return new_head;
     }
 }
