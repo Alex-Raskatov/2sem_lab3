@@ -26,6 +26,7 @@ LinkedList* remove_after(LinkedList * const current) {
     передано значение nullptr, то функция ничего не делает и возвращает nullptr; */
 
     if (current == nullptr) return nullptr;
+    else if (current->next == nullptr) return nullptr;
     else {
         LinkedList *tmp = current->next->next;
         delete current->next;
@@ -36,8 +37,8 @@ LinkedList* remove_after(LinkedList * const current) {
 
 void erase(LinkedList * const head) {
     //считая, что узел по адресу head является началом списка, удаляет все узлы этого списка
-
-    if (head->next == nullptr) {
+    if (head == nullptr) return;
+    else if (head->next == nullptr) {
         delete head;
         return;
     }
@@ -51,16 +52,21 @@ void erase(LinkedList * const head) {
 LinkedList* reverse_rec(LinkedList * const head) {
     // рекурсивно разварачивает список, элементы связываются в обратном порядке,
     // при этом сами элементы не меняют своего расположения в памяти и не копируются, изменяются только связи
-
-    if (head->next == nullptr) return head;
+    if (head == nullptr) return nullptr;
+    else if (head->next == nullptr) return head;
     else {
-        LinkedList *new_head = reverse_rec(head->next), *tmp = new_head;
-        while (tmp->next != nullptr) {
-            tmp = tmp->next;
-        }
+        LinkedList *tmp = head->next;
+        LinkedList *new_head = reverse_rec(head->next);
         tmp->next = head;
         head->next = nullptr;
         return new_head;
+        //LinkedList *new_head = reverse_rec(head->next), *tmp = new_head;
+        //while (tmp->next != nullptr) {
+        //    tmp = tmp->next;
+        //}
+        //tmp->next = head;
+        //head->next = nullptr;
+        //return new_head;
     }
 }
 
