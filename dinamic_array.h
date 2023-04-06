@@ -84,9 +84,11 @@ DynamicArray& push_back_first(DynamicArray &da, int val) {
     статочно места, то функция расширяет количество занимаемой памяти. */
     if (da.capacity >= da.size + 1) {
         da.elements[da.size] = val;
+        da.size++;
         return da;
     } else {
         reserve(da, da.size + 1).elements[da.size] = val;
+        da.size++;
         return da;
     }
 }
@@ -96,9 +98,11 @@ DynamicArray& push_back_second(DynamicArray &da, int val) {
     статочно места, то функция расширяет количество занимаемой памяти. */
     if (da.capacity >= da.size + 1) {
         da.elements[da.size] = val;
+        da.size++;
         return da;
     } else {
         reserve(da, da.size + 1000).elements[da.size] = val;
+        da.size++;
         return da;
     }
 }
@@ -108,9 +112,12 @@ DynamicArray& push_back_third(DynamicArray &da, int val) {
     статочно места, то функция расширяет количество занимаемой памяти. */
     if (da.capacity >= da.size + 1) {
         da.elements[da.size] = val;
+        da.size++;
         return da;
     } else {
-        reserve(da, da.size*2).elements[da.size] = val;
+        reserve(da, da.size*2);
+        da.elements[da.size] = val;
+        da.size++;
         return da;
     }
 }
